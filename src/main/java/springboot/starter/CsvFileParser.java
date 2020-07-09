@@ -1,6 +1,8 @@
 package springboot.starter;
 
 import au.com.bytecode.opencsv.CSVReader;
+import springboot.starter.exceptions.DataProcessingException;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class CsvFileParser {
                 dataFromCsv.add(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+           throw new DataProcessingException("Failed to read data form directory:" + path, e);
 
         }
         return dataFromCsv;
